@@ -4,11 +4,11 @@ import * as config from '../../config.json';
 import { produceMessage } from "./kafka";
 
 class SocketEventListener {
-  public users = {};
-  public activeUserIds = new Set([]);
+  public users:any = {};
+  public activeUserIds = new Set<string>([]);
   public numberOfQuestions = 5;
 
-  constructor(public io, public socket, public redis: RedisService) {
+  constructor(public io: any, public socket: any, public redis: RedisService) {
   }
 
   public sendMessage = () => {
@@ -27,27 +27,27 @@ class SocketEventListener {
   }
 
   public sessionJoined = () => {
-    this.socket.on(SocketEvents.SessionJoined, async (userId) => {
+    this.socket.on(SocketEvents.SessionJoined, async (userId: string) => {
       this.activeUserIds.add(userId);
       this.io.emit(SocketEvents.LiveUsersList, [...this.activeUserIds]);
     });
   }
 
   public sessionLeft = () => {
-    this.socket.on(SocketEvents.SessionLeft, async (userId) => {
+    this.socket.on(SocketEvents.SessionLeft, async (userId:string) => {
       this.activeUserIds.delete(userId);
       this.io.emit(SocketEvents.LiveUsersList, [...this.activeUserIds]);
     });
   }
 
   public initiateCall = () => {
-    this.socket.on(SocketEvents.InitiateCall, (data) => {
+    this.socket.on(SocketEvents.InitiateCall, (data:any) => {
       this.io.to(this.users[data.userToCall]).emit(SocketEvents.InitiateCall, { signal: data.signalData, from: data.from, name: data.name })
     })
   }
 
   public answerCall = () => {
-    this.socket.on(SocketEvents.ReceiveCall, (data) => {
+    this.socket.on(SocketEvents.ReceiveCall, (data:any) => {
       const matchQues = this.getQuestionSet();
       this.io.to(data.to).emit(SocketEvents.CallAccepted, data.signal)
       this.io.to(data.to).emit(SocketEvents.SessionQuestions, matchQues);

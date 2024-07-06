@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
 class SupabaseClient {
-    public client;
+    public client: any;
 
     constructor() {    
         if (!this.client) { 

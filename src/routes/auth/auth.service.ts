@@ -28,7 +28,7 @@ class AuthService extends BaseController {
 
             if (data) { result.payload = data; }
             return this.getSuccessResponse(response, result);
-        } catch (err) {
+        } catch (err: any) {
             return this.getFailResponse(response, err.status, err.message);
         }
     }
@@ -49,11 +49,11 @@ class AuthService extends BaseController {
                 result.payload = {
                     authToken: data.session.access_token,
                     refreshToken: data.session.refresh_token,
-                    user: { ...userData.data[0], email: data.user.email }
+                    user: userData.data ? { ...userData.data[0], email: data.user.email } : { email: data.user.email}
                 };
             }
             return this.getSuccessResponse(response, result);
-        } catch (err) {
+        } catch (err:any) {
             return this.getFailResponse(response, err.status, err.message);
         }
     }
@@ -64,13 +64,13 @@ class AuthService extends BaseController {
                 payload: {},
                 message: "User successfully logged out."
             };
-            const { data, error } = await supabaseClient.client.auth.signOut();
+            const { error } = await supabaseClient.client.auth.signOut();
 
             if (error) {
                 throw error;
             }
             return this.getSuccessResponse(response, result);
-        } catch (err) {
+        } catch (err: any) {
             return this.getFailResponse(response, err.status, err.message);
         }
     }

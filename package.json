@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm install && tsc",
+    "build": "npm install && npm rebuild typescript && tsc",
     "dev-start": "nodemon index.ts",
     "prod-start": "npm install && tsc && node dist/index.js"
   },
@@ -23,13 +23,15 @@
     "kafkajs": "^2.2.4",
     "multer": "^1.4.5-lts.1",
     "socket.io": "^4.7.2",
-    "tsc": "^2.0.4"
+    "tsc": "^2.0.4",
+    "typescript": "^5.5.3"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/multer": "^1.4.11",
     "@types/node": "^20.10.6",
     "nodemon": "^3.0.1",
     "prisma": "^5.7.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.5.3"
+    "ts-node": "^10.9.1"
   }
 }

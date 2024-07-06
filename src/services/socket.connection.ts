@@ -4,7 +4,7 @@ import RedisService from "./redis";
 
 class SocketService {
   private _io: Server;
-  public socketEvent;
+  public socketEvent : any;
 
   constructor() {
     this._io = new Server({

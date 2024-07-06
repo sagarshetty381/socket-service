@@ -25,7 +25,7 @@ class BaseController {
         this.sendResponse(response,result);
     }
 
-    public sendResponse(response, res: any): any {
+    public sendResponse(response : express.Response, res: any): any {
         return response.status(res.code).json(res);
     }
 }
