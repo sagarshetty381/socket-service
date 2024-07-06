@@ -1,8 +1,7 @@
 {
     "program": "SocketService",
     "apiBase": "/master/",
-    "masterPort": 4000,
-    "socketPort": 3333,
+    "port": 3333,
     "jwt": {
         "secret": "gt2V1m6JQDsd1ROPmaKEZwfu3+2qaOK7y8A7MFyetIDO9dCsOEf8hAByw8SdD9pxg3Y+wdBeleBB1xpZ6D1dmQ=="
     },

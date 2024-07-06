@@ -2,10 +2,11 @@
   "name": "commonService",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.ts"
+    "build": "npm install && tsc",
+    "dev-start": "nodemon index.ts",
+    "prod-start": "npm install && tsc && node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +30,6 @@
     "nodemon": "^3.0.1",
     "prisma": "^5.7.1",
     "ts-node": "^10.9.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.5.3"
   }
 }
