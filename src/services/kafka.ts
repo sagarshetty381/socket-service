@@ -8,7 +8,7 @@ import * as config from '../../config.json';
 const kafka = new Kafka({
     brokers: config.kafka.brokers,
     ssl: {
-        ca: [fs.readFileSync(path.join(__dirname, "./ca.pem"), "utf-8")]
+        ca: [fs.readFileSync("./src/services/ca.pem", "utf-8")]
     },
     sasl: {
         username: config.kafka.username,
