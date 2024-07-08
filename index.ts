@@ -24,9 +24,9 @@ function initService() {
     const PORT = process.env.PORT ? process.env.PORT : config.port;
     const socketService = new SocketService();
     const httpServer = http.createServer(app);
-    socketService.io.attach(httpServer);
+    const io = socketService.io.attach(httpServer);
     
-    app.listen(PORT, () =>
+    httpServer.listen(PORT, () =>
         console.log(`HTTP Server started at PORT:${PORT}`)
     );
 
